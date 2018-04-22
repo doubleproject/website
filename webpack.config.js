@@ -3,17 +3,24 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
 
-var plugins = null;
+var plugins = [
+  new CopyWebpackPlugin([
+    {from: 'font', to: 'font'},
+  ]),
+  new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'pug/index.pug',
+  }),
+  new ExtractTextPlugin('[name].css'),
+];
 var externals = {};
 
 if (production) {
-  plugins = [
-    // new CopyWebpackPlugin([
-    //     {from: 'img', to: 'img'},
-    // ]),
+  plugins = plugins.concat([
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.MinChunkSizePlugin({
       minChunkSize: 51200,
@@ -26,23 +33,18 @@ if (production) {
       compress: {warnings: false},
       comments: false
     }),
-    new ExtractTextPlugin('[name].css'),
-  ];
+  ]);
 
   externals = {
     react: 'React',
     'react-dom': 'ReactDOM',
   };
 } else {
-  plugins = [
-    // new CopyWebpackPlugin([
-    //     {from: 'img', to: 'img'},
-    // ]),
+  plugins = plugins.concat([
     new webpack.LoaderOptionsPlugin({debug: true}),
-    new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-  ];
+  ]);
 }
 
 module.exports = {

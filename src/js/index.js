@@ -1,2 +1,2 @@
 require('../scss/index.scss');
-require('../templates/index.pug');
+require('../pug/index.pug');
