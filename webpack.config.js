@@ -3,7 +3,6 @@ const path = require('path');
 const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ManifestRevisionPlugin = require('manifest-revision-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -12,10 +11,9 @@ var externals = {};
 
 if (production) {
   plugins = [
-    new CopyWebpackPlugin([
-        {from: 'img', to: 'img'},
-        {from: 'vendor', to: 'vendor/[name].[hash:3].[ext]'},
-    ]),
+    // new CopyWebpackPlugin([
+    //     {from: 'img', to: 'img'},
+    // ]),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.MinChunkSizePlugin({
       minChunkSize: 51200,
@@ -28,10 +26,7 @@ if (production) {
       compress: {warnings: false},
       comments: false
     }),
-    new ExtractTextPlugin('[name].[contenthash].css'),
-    new ManifestRevisionPlugin('tldr/static/manifest.json', {
-      rootAssetPath: './tldr/static',
-    }),
+    new ExtractTextPlugin('[name].css'),
   ];
 
   externals = {
@@ -40,10 +35,9 @@ if (production) {
   };
 } else {
   plugins = [
-    new CopyWebpackPlugin([
-        {from: 'img', to: 'img'},
-        {from: 'vendor', to: 'vendor/[name].[ext]'},
-    ]),
+    // new CopyWebpackPlugin([
+    //     {from: 'img', to: 'img'},
+    // ]),
     new webpack.LoaderOptionsPlugin({debug: true}),
     new ExtractTextPlugin('[name].css'),
     new webpack.HotModuleReplacementPlugin(),
@@ -53,15 +47,13 @@ if (production) {
 
 module.exports = {
   entry: {
-    content: './js/content.js',
-    home: './js/home.js',
+    index: './js/index.js',
     main: './js/main.js',
   },
 
   output: {
     path: path.resolve(__dirname, 'docs'),
-    publicPath: '/static',
-    filename: production ? '[name].[chunkhash].js' : '[name].js'
+    filename: '[name].js'
   },
 
   context: path.join(__dirname, 'src'),

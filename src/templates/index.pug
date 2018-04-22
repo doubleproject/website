@@ -1,9 +1,8 @@
-- import 'shared/nav.pug' as nav
-
-extends ./shared/base
+extends shared/base
+include shared/nav.pug
 
 block header
-  = nav.nav('') | safe
+  +nav.nav('')
 
 block content
   h1 Double
