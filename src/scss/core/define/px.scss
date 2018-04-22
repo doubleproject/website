@@ -1,0 +1,23 @@
+$max-width: 1040px;
+$narrow-width: 680px;
+$sidebar-width: 250px;
+
+$border-radius: 5px;
+$border-radius-l: 10px;
+
+$padding-xxs: 5px;
+$padding-xs: 10px;
+$padding-s: 15px;
+$padding: 20px;
+$padding-l: 30px;
+$padding-xl: 40px;
+$padding-xxl: 60px;
+
+// Responsiveness.
+$small-phone:    '(max-width: 400px)';
+$phone:          '(max-width: 520px)';
+$portable:       '(max-width: 700px)';
+$not-phone:      '(min-width: 521px)';
+$desktop:        '(min-width: 701px)';
+$narrow-desktop: '(max-width: 850px)';
+$wide-desktop:   '(min-width: 1400px)';

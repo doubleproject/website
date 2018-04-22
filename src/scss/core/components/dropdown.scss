@@ -1,0 +1,28 @@
+@import '../define/all';
+
+.dropdown {
+  @include default-transition();
+  position: fixed;
+  border-radius: $border-radius;
+  opacity: 0;
+  z-index: 10;
+  max-width: 200px;
+  margin-top: $padding-xs;
+  transform-origin: top left;
+  transform: translateY(20px) rotate3d(1,0.2,0,25deg);
+
+  &.shown {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.dropdown-indicator {
+  @include default-transition();
+  border-bottom: dashed 1px $gray1;
+  cursor: pointer;
+
+  &:hover {
+    border-bottom: 1px solid $brand1;
+  }
+}

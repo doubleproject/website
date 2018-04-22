@@ -1,0 +1,56 @@
+@import '../define/all';
+
+.select {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  max-width: 100%;
+
+  select {
+    @include default-transition();
+    outline: none;
+    display: inline-block;
+    border: 1px solid;
+    border-radius: $border-radius;
+    cursor: pointer;
+    padding: 0 $padding-s;
+    vertical-align: middle;
+    background: $white;
+    background: linear-gradient(to bottom, $white, rgba(255, 255, 255, 0)) left no-repeat, center no-repeat $white1;
+    border-color: rgba($black3, 0.1);
+    border-bottom-color: rgba($black3, 0.17);
+    box-shadow: 0 1px 1px rgba($black3, 0.1);
+    background-clip: padding-box;
+    color: $black3;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 3px;
+    height: 36px;
+    padding: 0 25px 0 10px;
+    font-size: 14px;
+    max-width: 100%;
+
+    &:hover {
+      border-color: rgba($brand3, 0.7);
+      border-bottom-color: rgba($brand3, 0.8);
+      box-shadow: 0 1px 10px rgba($brand3, 0.3);
+    }
+
+    option:disabled {
+      display: none;
+    }
+  }
+
+  &:after {
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    position: absolute;
+    top: 0;
+    right: 7px;
+    line-height: 36px;
+    color: $gray3;
+    content: "▾";
+    pointer-events: none;
+  }
+}

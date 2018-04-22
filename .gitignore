@@ -1,0 +1,8 @@
+# Frontend
+node_modules/
+package-lock.json
+
+# Other
+*.cache
+*.DS_Store
+.vscode

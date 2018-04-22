@@ -1,0 +1,33 @@
+@import '../define/all';
+
+@each $intent, $color in $intent-colors {
+  .#{$intent} {
+    color: $color;
+  }
+
+  .#{$intent}.hollow {
+    background-color: transparent;
+    border: 1px solid $color;
+  }
+
+  .#{$intent}.solid {
+    color: $white;
+    background-color: $color;
+  }
+
+  .#{$intent}.gradient {
+    color: $white;
+    background-color: $color;
+    background: linear-gradient($color, darken($color, 5%));
+  }
+
+  .#{$intent}.shadow, .#{$intent}.shadowable:hover {
+    box-shadow: 0 10px 30px rgba($color, .15), 0 5px 15px rgba(0,0,0, .03);
+  }
+}
+
+@each $intent, $color in $intent-light-colors {
+  .#{$intent}.light {
+    background-color: $color;
+  }
+}

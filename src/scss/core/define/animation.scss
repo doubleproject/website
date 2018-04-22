@@ -1,0 +1,108 @@
+$quantum-curve: cubic-bezier(.4, 0, .2, 1);
+$bounce-curve: cubic-bezier(.54, 1.12, .38, 1.11);
+$transition-duration: 0.4s;
+
+/**
+ * Transition all attributes using the default timing and easing function.
+ */
+@mixin default-transition {
+  transition: all #{$transition-duration} #{$quantum-curve};
+}
+
+/**
+ * Transition the specified attribute using the default timing and easing
+ * function.
+ */
+@mixin default-transition-attr($attr) {
+  transition: $attr #{$transition-duration} #{$quantum-curve};
+}
+
+/**
+ * For use with React CSSTransitionGroup.
+ *
+ * $name: React's transitionName prop.
+ * $properties: map of CSS property to (initial, final) values.
+ * $duration: animation duration.
+ * $easing: easing function.
+ * $delay: animation delay.
+ * $before: selector text to insert before transition name.
+ * $after: selector text to insert after transition name.
+ */
+@mixin react-transition(
+  $name,
+  $properties,
+  $duration: $transition-duration,
+  $easing: $quantum-curve,
+  $delay: 0,
+  $before: '',
+  $after: ''
+) {
+  @include each-prop($properties, 2);
+  @include react-transition-phase(
+    $name, 'enter', $properties, $duration, $easing, $delay, $before, $after);
+  @include react-transition-phase(
+    $name, 'exit', $properties, $duration, $easing, $delay, $before, $after);
+}
+
+/**
+ * A phase of a React animation with CSSTransitionGroup.
+ *
+ * $phase: one of appear, enter, or exit, where:
+ * - enter = appear + enter.
+ * - exit = reverse of enter (start/end flipped).
+ */
+@mixin react-transition-phase(
+  $name,
+  $phase,
+  $properties,
+  $duration: $transition-duration,
+  $easing: $quantum-curve,
+  $delay: 0,
+  $before: '',
+  $after: ''
+) {
+  $start-index: 1;
+  $end-index: 2;
+
+  @if ($phase == 'exit') {
+    $start-index: 2;
+    $end-index: 1;
+  } @else if ($phase != 'enter' and $phase != 'appear') {
+    @error 'Unknown transition phase: #{$phase}. Expected appear|enter|exit.';
+  }
+
+  #{transition-name($phase, $name, $before, $after)} {
+    @include each-prop($properties, $start-index);
+  }
+
+  #{transition-name(#{$phase}-active, $name, $before, $after)} {
+    @include each-prop($properties, $end-index);
+    transition-property: map-keys($properties);
+    transition-duration: $duration;
+    transition-timing-function: $easing;
+    transition-delay: $delay;
+  }
+}
+
+/**
+ * Given a dictionary of key to values, set each key to the value at the given
+ * index. Note that indices start with 1.
+ *
+ * Example: each-prop((opacity: 0 1), 2) will print opacity: 1.
+ */
+@mixin each-prop($properties, $index) {
+  @each $prop, $values in $properties {
+    #{$prop}: nth($values, $index);
+  }
+}
+
+@function transition-name($phase, $name, $before, $after) {
+  $full-name: '#{$before}.#{$name}-#{$phase}#{$after}';
+  @if ($phase == 'enter') {
+    @return ($full-name, transition-name('appear', $name, $before, $after));
+  } @else if ($phase == 'enter-active') {
+    @return ($full-name, transition-name('appear-active', $name, $before, $after));
+  } @else {
+    @return $full-name;
+  }
+}

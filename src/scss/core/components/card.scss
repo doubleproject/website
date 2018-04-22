@@ -1,0 +1,23 @@
+@import '../define/all';
+
+.card {
+  background-color: $white;
+  border-radius: $border-radius;
+  box-shadow: $shadow-m;
+  overflow: hidden;
+
+  .card-header {
+    background-color: $white2;
+    border-bottom: 1px solid $white3;
+  }
+
+  &.padded {
+    padding: $padding;
+
+    .card-header {
+      margin: -$padding;
+      margin-bottom: $padding;
+      padding: $padding;
+    }
+  }
+}

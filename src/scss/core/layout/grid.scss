@@ -1,0 +1,118 @@
+@import '../define/all';
+
+.grid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin align($align, $msalign) {
+  -webkit-box-align: $align;
+  -ms-flex-align: $align;
+  -ms-grid-row-align: $msalign;
+  align-items: $msalign;
+}
+
+.grid-top {
+  @include align(start, flex-start);
+}
+
+.grid-middle {
+  @include align(center, center);
+}
+
+.grid-bottom {
+  @include align(end, flex-end);
+}
+
+.grid-stretch {
+  @include align(stretch, stretch);
+}
+
+.grid-baseline {
+  @include align(baseline, baseline);
+}
+
+.grid-left {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+
+.grid-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.grid-right {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.grid-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.grid-around {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+
+.cell {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.cell > *:last-child {
+  margin-bottom: 0;
+}
+
+.cell-top {
+  margin-bottom: auto;
+}
+
+.cell-middle {
+  margin: auto 0;
+}
+
+.cell-bottom {
+  margin-top: auto;
+}
+
+@mixin cellx($x) {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 calc(100% * #{$x} / 12);
+  flex: 0 0 calc(100% * #{$x} / 12);
+  min-width: calc(100% * #{$x} / 12);
+}
+
+@for $i from 1 through 12 {
+  .cell-#{$i} {
+    @include cellx($i);
+  }
+}
+
+@media #{$portable} {
+  .grid {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+  }
+
+  .cell {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    min-width: auto;
+  }
+}
