@@ -8,9 +8,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const production = process.env.NODE_ENV === 'production';
 
 var plugins = [
-  new CopyWebpackPlugin([
-    {from: 'font', to: 'font'},
-  ]),
   new HtmlWebpackPlugin({
     filename: 'index.html',
     template: 'pug/index.pug',
