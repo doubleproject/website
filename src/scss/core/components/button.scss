@@ -1,0 +1,153 @@
+@import '../define/all';
+
+.btn {
+  @include default-transition();
+  position: relative;
+  padding: 10px 15px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: $border-radius;
+  outline: none;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 1;
+
+  svg.svg-inline--fa {
+    margin-left: -3px;
+    margin-right: 9px;
+  }
+}
+
+.btn-small, .btn-tiny {
+  svg.svg-inline--fa {
+    margin-left: -2px;
+    margin-right: 4px;
+  }
+}
+
+.btn-small {
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.btn-tiny {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+.btn.btn-hollow {
+  background-color: transparent;
+}
+
+.btn.btn-hollow:hover {
+  background-color: transparent;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-link {
+  border-color: transparent;
+  background-color: transparent;
+  color: $brand3;
+  padding: 0;
+}
+
+.btn-link:focus, .btn-link:hover {
+  color: $brand2;
+}
+
+.btn[disabled], .btn[disabled]:hover {
+  color: $gray1;
+  background-color: $white3;
+  border-color: $white3;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.btn[disabled].btn-hollow,
+.btn[disabled].btn-hollow:focus,
+.btn[disabled].btn-hollow:hover {
+  background-color: transparent;
+  border-color: $white5;
+  color: $gray1;
+}
+
+@each $intent, $color in $intent-colors {
+  .btn-#{$intent} {
+    // @include colored-shadow-xs($color);
+    color: $white;
+    background-color: $color;
+    border-color: darken($color, 10%);
+  }
+
+  .btn-#{$intent}.btn-hollow {
+    border-color: $color;
+    color: $color;
+    background-color: transparent;
+  }
+
+  .btn-#{$intent}[disabled]:hover,
+  .btn-#{$intent}.btn-hollow[disabled]:hover {
+    box-shadow: none;
+  }
+}
+
+@each $intent, $color in $intent-hover-colors {
+  .btn-#{$intent}:focus, .btn-#{$intent}.btn-hollow:focus,
+  .btn-#{$intent}:hover, .btn-#{$intent}.btn-hollow:hover,
+  .btn-#{$intent}.selected, .btn-#{$intent}.btn-hollow.selected {
+    @include colored-shadow-l($color);
+    border-color: darken($color, 15%);
+    color: $white;
+    background-color: $color;
+  }
+}
+
+.btn-addon {
+  padding: 0.8rem 1rem 0.7rem;
+  border: 1px solid transparent;
+  line-height: 1;
+}
+
+.btn-addon:first-child {
+  padding-left: 0;
+}
+
+.btn-group {
+  overflow: auto;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  vertical-align: top;
+
+  .btn {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    border-radius: 0;
+    word-break: break-all;
+    word-break: break-word;
+  }
+
+  .btn:first-of-type {
+    border-radius: $border-radius 0 0 $border-radius;
+  }
+
+  .btn:last-of-type {
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+
+  .btn-hollow:not(:first-of-type) {
+    margin-left: -1px;
+  }
+}

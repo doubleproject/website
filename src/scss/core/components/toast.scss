@@ -1,0 +1,97 @@
+@import '../define/all';
+
+$toast-height: 40px;
+$toast-min-width: 100px;
+$toast-max-width: 500px;
+
+.toast-wrapper {
+  position: fixed;
+  z-index: 999;
+  pointer-events: none;
+  width: 100%;
+
+  > span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.top {
+    top: 0;
+  }
+
+  &.bottom {
+    bottom: 0;
+
+    > span {
+      flex-direction: column-reverse;
+    }
+  }
+
+  &.left > span {
+    align-items: flex-start;
+  }
+
+  &.right > span {
+    align-items: flex-end;
+  }
+}
+
+.toast {
+  $translate: (transform: translateY(-$toast-height) translateY(0));
+  $leave-blur: (opacity: 0 1, filter: blur(20px) blur(0));
+
+  @include react-transition-phase(
+    'toast',
+    'enter',
+    $translate,
+    $duration: 300ms,
+    $easing: $bounce-curve,
+    $before: '&'
+  );
+
+  @include react-transition-phase(
+    'toast',
+    'enter',
+    $translate,
+    $duration: 300ms,
+    $easing: $bounce-curve,
+    $before: '&',
+    $after: '~ &'
+  );
+
+  @include react-transition-phase(
+    'toast',
+    'exit',
+    $leave-blur,
+    $duration: 300ms,
+    $before: '&'
+  );
+
+  @include react-transition-phase(
+    'toast',
+    'exit',
+    $translate,
+    $delay: 50ms,
+    $before: '&',
+    $after: '~ &'
+  );
+
+  display: flex;
+  align-items: flex-start;
+  pointer-events: auto;
+
+  position: relative;
+  margin: $padding;
+  padding: 8px 12px 8px 15px;
+  border-radius: 5px;
+  background-color: white;
+  min-width: $toast-min-width;
+  max-width: $toast-max-width;
+
+  .toast-dismiss {
+    cursor: pointer;
+    margin-left: 8px;
+    color: $white;
+  }
+}

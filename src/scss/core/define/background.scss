@@ -1,0 +1,22 @@
+/**
+ * Retina background image.
+ */
+@mixin retina-bg($path, $ext: 'png', $w: auto, $h: auto, $mode: null) {
+  $at1x-path: '#{$path}.#{$ext}';
+  $at2x-path: '#{$path}@2x.#{$ext}';
+
+  background-image: url('#{$at1x-path}');
+
+  @if $mode {
+    background-size: #{$mode};
+  } @else {
+    background-size: #{$w}, #{$h};
+  }
+
+  @media all and (-webkit-min-device-pixel-ratio: 1.5),
+         all and (-o-min-device-pixel-ratio:      3/2),
+         all and (min--moz-device-pixel-ratio:    1.5),
+         all and (min-device-pixel-ratio:         1.5) {
+           background-image: url('#{$at2x-path}');
+  }
+}

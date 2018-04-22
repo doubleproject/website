@@ -1,0 +1,69 @@
+/**
+ * CSS-based checkbox.
+ *
+ * Usage:
+ *
+ * <label class="checkbox">
+ *   <input type="checkbox">
+ *   <div class="indicator"></div>
+ *   <span>Danqing loves Audrey</span>
+ * </label>
+ */
+
+@import '../define/all';
+@import 'control';
+
+.checkbox {
+  @include control();
+
+  .indicator {
+    border-radius: $border-radius;
+    background-color: $white1;
+    border: 1px solid $gray1;
+    width: $control-height;
+    padding: 2px;
+
+    .checkmark {
+      line-height: 1;
+      font-size: $control-height - 4px;
+
+      path {
+        @include default-transition();
+        opacity: 0;
+        fill: $white;
+      }
+    }
+  }
+
+  &.small {
+    .indicator {
+      width: $control-height-s;
+      padding: 1px;
+      border-radius: 4px;
+
+      .checkmark {
+        font-size: $control-height-s - 2px;
+      }
+    }
+  }
+
+  span {
+    margin-left: 30px;
+  }
+
+  input:checked ~ .indicator {
+    border-color: $brand3;
+    box-shadow: none;
+
+    .checkmark path {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    .indicator {
+      border-color: $brand3;
+      background-color: $lightbrand2;
+    }
+  }
+}

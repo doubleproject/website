@@ -1,0 +1,58 @@
+/**
+ * CSS-based toggle checkbox.
+ *
+ * Usage:
+ *
+ * <label class="toggle">
+ *   <input type="checkbox">
+ *   <div class="indicator"></div>
+ *   <span>Danqing loves Audrey</span>
+ * </label>
+ */
+
+@import '../define/all';
+@import 'control';
+
+.toggle {
+  @include control();
+
+  .indicator {
+    @include default-transition();
+    width: 40px;
+    background-color: $white5;
+    border-radius: 34px;
+
+    &:before {
+      @include default-transition();
+      position: absolute;
+      content: '';
+      height: 14px;
+      width: 14px;
+      left: 3px;
+      bottom: 2px;
+      background-color: $white;
+      border-radius: 50%;
+    }
+  }
+
+  input:checked + .indicator:before {
+    transform: translateX(20px);
+  }
+
+  span {
+    margin-left: 50px;
+  }
+
+  &.right {
+    span {
+      margin-right: 50px;
+      margin-left: 0;
+    }
+  }
+
+  &:hover {
+    .indicator {
+      background-color: $gray1;
+    }
+  }
+}

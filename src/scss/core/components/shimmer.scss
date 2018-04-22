@@ -1,0 +1,41 @@
+/**
+ * Facebook-style loading shimmer animation.
+ *
+ * Usage:
+ *
+ * <div class='shimmer-wrapper'>
+ *   <div class='shimmer'>
+ *   <div class='shimmer'>
+ *   ...
+ * </div>
+ */
+
+@import '../define/all';
+
+@keyframes shimmer {
+  0% {
+    background-position: -468px 0
+  }
+  100% {
+    background-position: 468px 0
+  }
+}
+
+.shimmer-wrapper {
+  position: relative;
+}
+
+.shimmer {
+  animation-duration: 1.2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: shimmer;
+  animation-timing-function: linear;
+  background: $white2;
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, $white2), color-stop(18%, $white3), color-stop(33%, $white2));
+  background: linear-gradient(to right, $white2 8%, $white3 18%, $white2 33%);
+  background-size: 800px 104px;
+  height: $padding;
+  margin-bottom: $padding-xs;
+  position: relative;
+}

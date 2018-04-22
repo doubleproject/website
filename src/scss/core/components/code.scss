@@ -1,0 +1,85 @@
+/** Syntax highlighting. To be used with highlight.js. */
+
+@import '../define/all';
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: $white2;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.hljs, .hljs-subst {
+  color: $black2;
+}
+
+.hljs-comment {
+  color: $gray1;
+}
+
+.hljs-attribute,
+.hljs-doctag,
+.hljs-keyword,
+.hljs-meta-keyword,
+.hljs-name,
+.hljs-selector-tag {
+  font-weight: bold;
+  color: #e36209;
+}
+
+.hljs-deletion,
+.hljs-number,
+.hljs-quote,
+.hljs-selector-class,
+.hljs-selector-id,
+.hljs-template-tag,
+.hljs-type {
+  color: #005cc5;
+}
+
+.hljs-string {
+  color: $forest3;
+}
+
+.hljs-regexp {
+  color: $red5;
+}
+
+.hljs-section, .hljs-title {
+  color: $violet3;
+  font-weight: bold;
+}
+
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-symbol,
+.hljs-template-variable,
+.hljs-variable {
+  color: #e36209;
+}
+
+.hljs-literal {
+  color: $lime3;
+}
+
+.hljs-addition, .hljs-built_in, .hljs-bullet, .hljs-code {
+  color: $lime5;
+}
+
+.hljs-meta {
+  color: $sky5;
+}
+
+.hljs-meta-string {
+  color: $sky3;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
