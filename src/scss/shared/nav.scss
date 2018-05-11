@@ -1,0 +1,15 @@
+@import 'core/define/all';
+
+nav#top-nav {
+  background-color: $white1;
+  padding: $padding 0;
+}
+
+#top-nav-logo {
+  @include default_transition();
+  color: $black1;
+
+  &:hover {
+    color: $brand3;
+  }
+}

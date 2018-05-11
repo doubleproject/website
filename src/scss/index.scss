@@ -1,0 +1,11 @@
+@import 'core/define/all';
+
+#page-content {
+  padding-top: $padding;
+}
+
+h1 {
+  margin-top: $padding-xl;
+  font-size: 56px;
+  font-weight: bold;
+}
