@@ -1,11 +1,29 @@
 @import 'core/define/all';
 
+html, body {
+  background-color: $white1;
+}
+
 #page-content {
   padding-top: $padding;
 }
 
+nav {
+  padding: $padding;
+
+  .wrapper {
+    border-bottom: 1px solid $white3;
+  }
+
+  h3 {
+    text-align: center;
+    color: $gray1;
+  }
+}
+
 h1 {
+  text-align: center;
   margin-top: $padding-xl;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: bold;
 }

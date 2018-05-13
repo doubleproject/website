@@ -46,8 +46,8 @@ if (production) {
 
 module.exports = {
   entry: {
-    index: './js/index.js',
     main: './js/main.js',
+    index: './js/index.js',
   },
 
   output: {
