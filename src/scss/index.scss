@@ -1,14 +1,12 @@
 @import 'core/define/all';
 
-html, body {
-  background-color: $white1;
-}
-
-#page-content {
-  padding-top: $padding;
+#page-wrapper, #page-content {
+  width: 100%;
 }
 
 nav {
+  position: absolute;
+  width: 100%;
   padding: $padding;
 
   .wrapper {
@@ -21,9 +19,36 @@ nav {
   }
 }
 
-h1 {
-  text-align: center;
-  margin-top: $padding-xl;
-  font-size: 48px;
-  font-weight: bold;
+.hero {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+
+  .content-wrapper {
+    position: absolute;
+    left: $padding;
+    right: $padding;
+    bottom: $padding-xxl;
+  }
+
+  h1, .button-wrapper {
+    text-align: center;
+  }
+
+  h1 {
+    margin-top: $padding-xl;
+    font-size: 40px;
+    font-weight: bold;
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .button {
+    margin-top: $padding-l;
+    color: $gray1;
+    display: inline-block;
+    border: 1px solid $gray1;
+    border-radius: $border-radius;
+    padding: $padding-xxs $padding-xs;
+  }
 }
