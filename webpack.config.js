@@ -13,6 +13,9 @@ var plugins = [
     template: 'pug/index.pug',
   }),
   new ExtractTextPlugin('[name].css'),
+  new CopyWebpackPlugin([
+    {from: 'img', to: 'img'},
+  ]),
 ];
 var externals = {};
 
