@@ -1,0 +1,55 @@
+@import 'core/define/all';
+
+footer {
+  margin-top: 100px;
+  padding: $padding-xl 0;
+  color: $gray3;
+  background-color: $white2;
+
+  .wrapper {
+    display: table;
+    width: 100%;
+  }
+
+  .footer-content {
+    display: table-row;
+    width: 100%;
+  }
+
+  .column {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  h3 {
+    margin-bottom: $padding-xxs;
+  }
+
+  .copyright {
+    font-size: 12px;
+    margin-bottom: $padding;
+  }
+
+  .nav {
+    text-align: right;
+
+    a {
+      @include default-transition();
+      margin-left: $padding;
+      color: $gray3;
+    }
+
+    a:hover {
+      color: $gray5;
+    }
+  }
+}
+
+@media #{$phone} {
+  footer {
+    .wrapper, .footer-content, .column {
+      display: block;
+      text-align: center;
+    }
+  }
+}
