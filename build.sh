@@ -1,5 +1,5 @@
 git checkout gh-pages
-rm -rf font *.css *.js *.html build.sh
+rm -rf img *.css *.js *.html build.sh
 git checkout master src build.sh webpack.config.js package.json
 git reset HEAD
 npm run build-prod
