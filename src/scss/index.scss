@@ -5,13 +5,7 @@
 }
 
 nav {
-  position: absolute;
-  width: 100%;
   padding: $padding;
-
-  .wrapper {
-    border-bottom: 1px solid $white3;
-  }
 
   h3 {
     text-align: center;
@@ -21,14 +15,11 @@ nav {
 
 .hero {
   position: relative;
-  height: 100vh;
-  width: 100%;
 
-  .content-wrapper {
-    position: absolute;
-    left: $padding;
-    right: $padding;
-    bottom: 80px;
+  #hero-image {
+    max-width: 635px;
+    margin: auto;
+    display: block;
   }
 
   h1, .button-wrapper {
@@ -50,6 +41,18 @@ nav {
     border: 1px solid $orange3;
     border-radius: $border-radius;
     padding: $padding-xxs $padding-xs;
+  }
+}
+
+@media #{$portable} {
+  .hero {
+    #hero-image {
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
   }
 }
 
